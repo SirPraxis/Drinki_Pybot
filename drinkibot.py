@@ -27,21 +27,30 @@ def valida_Ubicacion():
             "text": "Lo sentimos, por el momento no tenemos servicio en esa delegación :("
         }
     }
+    mensaje_BYE = {
+        "recipient": {
+            "id": user_id
+        },
+        "message": {
+            "text": "¡Hasta luego!"
+        }
+    }
     pregunta_Promo = {
         "recipient": {
             "id": user_id
         },
         "message": {
+            "text": "Por el momento sólo tenemos dos bebidas, ¿cuál te gustaría?",
             "quick_replies": [{
                 "content_type": "text",
                 "title": "Chela",
                 "payload": "Chela"
-            },
-            {
+            },{
                 "content_type": "text",
                 "title": "Ron",
                 "payload": "Ron"
-            }]
+            }
+            ]
         }
     }
     headers={"Content-Type": "application/json"}
@@ -50,4 +59,5 @@ def valida_Ubicacion():
         print (requests.post(fb_url, data = json.dumps(pregunta_Promo), headers=headers))
     else:
         print (requests.post(fb_url, data = json.dumps(mensaje_NO), headers=headers))
+        print (requests.post(fb_url, data = json.dumps(mensaje_BYE), headers=headers))
     return 'PASS'
